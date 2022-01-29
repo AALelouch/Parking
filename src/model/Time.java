@@ -25,7 +25,7 @@ public class Time {
         return hour + ":" + minute;
     }
 
-    //Setters
+    //Setters and getters
     public void setHour(int hour) {
         this.hour = hour;
     }
@@ -34,4 +34,11 @@ public class Time {
         this.minute = minute;
     }
 
+    public int getMinute() {
+        return minute;
+    }
+
+    public int getHour() {
+        return hour;
+    }
 }

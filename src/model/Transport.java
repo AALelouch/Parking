@@ -7,13 +7,18 @@ public class Transport {
     private Time hourEntry;
     private Time hourLeave;
     private Time[] arrayOfTime;
+    private int hours;
+    private int totalPrice;
+    private int priceForHour;
 
-    public Transport(String liscensePlate, Owner transportOwner, Time hourEntry, Time hourLeave){
-        validateLicencePlate(liscensePlate);
+    public Transport(String licensePlate, Owner transportOwner, Time hourEntry, Time hourLeave, int priceForHour){
+        validateLicencePlate(licensePlate);
+        this.licensePlate = licensePlate;
         this.transportOwner = transportOwner;
         this.hourEntry = hourEntry;
         this.hourLeave = hourLeave;
         this.arrayOfTime = new Time[]{this.hourEntry, this.hourLeave};
+        this.priceForHour = priceForHour;
 
     }
 
@@ -58,6 +63,30 @@ public class Transport {
         this.arrayOfTime = arrayOfTime;
     }
 
+    public int getHours() {
+        return hours;
+    }
+
+    public void setHours(int hours) {
+        this.hours = hours;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public int getPriceForHour() {
+        return priceForHour;
+    }
+
+    public void setPriceForHour(int priceForHour) {
+        this.priceForHour = priceForHour;
+    }
+
     //Validator
     public void validateLicencePlate(String plate) {
         for (int i = 0; i <= 3; i++) {
@@ -71,4 +100,16 @@ public class Transport {
             }
         }
     }
+
+    //Method for calculate the number of hours
+    public void calculateNumberOfHours(){
+        this.hours = ((hourLeave.getHour())+(hourLeave.getMinute()/60))-((hourEntry.getHour())+(hourEntry.getMinute()/60));
+        this.hours = Math.abs(this.hours);
+    }
+
+    //Method for calculate the final price
+    public void calculateFinalPrice(){
+        this.totalPrice = this.hours * this.priceForHour;
+    }
+
 }
